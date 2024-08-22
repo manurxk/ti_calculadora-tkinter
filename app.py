@@ -15,3 +15,20 @@ def click_boton(valor):
     actual = pantalla.get()
     pantalla.delete(0, tk.END)
     pantalla.insert(0, actual + valor)
+
+#Función para evaluar la expresión
+def evaluar():
+    try:
+       resultado=eval(pantalla.get())
+       #Borra todo el contenido del widget
+       pantalla.delete(0,tk.END)
+       #Inserta el resultado evaluado
+       pantalla.insert(0,resultado)
+    except Exception as e:
+        pantalla.delete(0, tk.END)
+        #Nos muestra el texto "ERROR" si algo salió mal
+        pantalla.insert(0,"Error")
+
+#Función para borrar pantalla
+def borrar():
+    pantalla.delete(0,tk.END)
