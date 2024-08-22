@@ -51,3 +51,20 @@ button_style = {
     'padx': 20,
     'pady': 20     
 }
+for texto, fila, columna, *span in botones:
+    if texto == '=':
+        boton = tk.Button(root, text=texto, command=evaluar, **button_style)
+    elif texto == 'C':
+        boton = tk.Button(root, text=texto, command=borrar, **button_style)
+    else:
+        boton = tk.Button(root, text=texto, command=lambda t=texto: click_boton(t), **button_style)
+    
+    boton.grid(row=fila, column=columna, columnspan=span[0] if span else 1, sticky="nsew", padx=5, pady=5)
+
+# Ajustar el tamaño de las filas y columnas
+for i in range(6):
+    root.grid_rowconfigure(i, weight=1)
+    root.grid_columnconfigure(i, weight=1)
+
+# Ejecutar el bucle principal
+root.mainloop()
